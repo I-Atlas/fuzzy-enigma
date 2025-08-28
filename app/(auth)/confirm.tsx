@@ -1,4 +1,4 @@
-import Logo from "@/assets/svg/Logo";
+import Logo from "@/assets/svg/logo.svg";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { useAuthStore } from "@/stores/auth";
@@ -53,10 +53,9 @@ export default function ConfirmScreen() {
       : "Вы можете запросить код снова";
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F7F7F7" }}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.select({ ios: "padding", android: undefined })}
-        style={styles.container}
       >
         <View style={styles.header}>
           <Logo />
@@ -92,7 +91,7 @@ export default function ConfirmScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F6F8",
+    backgroundColor: "#F7F7F7",
     paddingHorizontal: 16,
   },
   header: {

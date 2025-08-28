@@ -1,4 +1,4 @@
-import Logo from "@/assets/svg/Logo";
+import Logo from "@/assets/svg/logo.svg";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { applyPhoneMask, useAuthStore, validatePhone } from "@/stores/auth";
@@ -50,10 +50,9 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F7F7F7" }}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.select({ ios: "padding", android: undefined })}
-        style={styles.container}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
           <View style={{ flex: 1 }}>
