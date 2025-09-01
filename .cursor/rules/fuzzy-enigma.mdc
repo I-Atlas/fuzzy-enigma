@@ -1,0 +1,5 @@
+---
+description: Always follow the conventions in STYLE_GUIDE.md when generating or editing code.
+globs:
+alwaysApply: true
+---

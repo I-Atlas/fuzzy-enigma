@@ -14,10 +14,6 @@ export default function AuthLayout() {
         options={{ headerShown: false, gestureEnabled: false }}
       />
       <Stack.Screen
-        name="register"
-        options={{ headerShown: false, gestureEnabled: false }}
-      />
-      <Stack.Screen
         name="confirm"
         options={{ headerShown: false, gestureEnabled: false }}
       />

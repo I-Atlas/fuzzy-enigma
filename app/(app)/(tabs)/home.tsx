@@ -1,21 +1,59 @@
 import { DailyQuestCard } from "@/components/home/DailyQuestCard";
+import { HomeSegmentedTabs } from "@/components/home/HomeSegmentedTabs";
 import { QuickStartSection } from "@/components/home/QuickStartSection";
 import { WelcomeHeader } from "@/components/home/WelcomeHeader";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Button, ScrollView, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const auth = useAuthStore();
   const router = useRouter();
-  const firstName = auth.fullName ? auth.fullName.split(" ")[0] : "Дмитрий";
+  const firstName = "Дмитрий";
+  const insets = useSafeAreaInsets();
+  const [tab, setTab] = React.useState<"hacks" | "office" | "team" | "remote">(
+    "office",
+  );
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
+    <SafeAreaView edges={["top"]} style={styles.container}>
+      <View style={styles.stickyTop}>
         <WelcomeHeader name={firstName} />
-        <QuickStartSection />
+        <HomeSegmentedTabs value={tab} onChange={setTab} />
+      </View>
+      <ScrollView
+        contentContainerStyle={[
+          styles.content,
+          { paddingBottom: insets.bottom + 24 },
+        ]}
+      >
+        {tab === "office" && (
+          <>
+            <QuickStartSection />
+            <View style={styles.sectionBlock}>
+              <DailyQuestCard />
+            </View>
+          </>
+        )}
+        {tab === "team" && (
+          <View style={styles.sectionBlock}>
+            <DailyQuestCard title="Командный челлендж" />
+          </View>
+        )}
+        {tab === "hacks" && (
+          <View style={styles.sectionBlock}>
+            <DailyQuestCard title="Лайфхаки дня" />
+          </View>
+        )}
+        {tab === "remote" && (
+          <View style={styles.sectionBlock}>
+            <DailyQuestCard title="Для удаленщиков" />
+          </View>
+        )}
         <View style={styles.sectionTitleWrap}>
           <Button
             title="Выйти"
@@ -25,17 +63,15 @@ export default function HomeScreen() {
             }}
           />
         </View>
-        <View style={styles.sectionBlock}>
-          <DailyQuestCard />
-        </View>
       </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#F2F2F7" },
-  content: { paddingBottom: 24, gap: 16 },
+  container: { flex: 1, backgroundColor: "transparent" },
+  stickyTop: { backgroundColor: "transparent" },
+  content: { paddingTop: 12, gap: 16 },
   sectionTitleWrap: { paddingHorizontal: 16, paddingTop: 12 },
   sectionBlock: { paddingHorizontal: 16 },
 });

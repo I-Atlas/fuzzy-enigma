@@ -11,6 +11,9 @@ export default function AppTabsLayout() {
   return (
     <Tabs
       screenOptions={{
+        sceneStyle: {
+          backgroundColor: "#F7F7F7",
+        },
         headerShown: false,
       }}
       tabBar={(props) => <PillTabBar {...props} />}

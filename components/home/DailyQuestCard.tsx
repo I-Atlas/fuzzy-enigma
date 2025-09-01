@@ -59,7 +59,7 @@ export const DailyQuestCard: React.FC<DailyQuestCardProps> = ({
         />
       </View>
 
-      <TouchableOpacity activeOpacity={0.9} style={styles.cta}>
+      <TouchableOpacity activeOpacity={0.5} style={styles.cta}>
         <Text style={styles.ctaText}>Начать →</Text>
       </TouchableOpacity>
     </View>

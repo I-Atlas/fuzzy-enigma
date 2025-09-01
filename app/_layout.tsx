@@ -14,8 +14,19 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
 
+  const baseTheme = colorScheme === "dark" ? DarkTheme : DefaultTheme;
+  const theme = {
+    ...baseTheme,
+    colors: {
+      ...baseTheme.colors,
+      background: "transparent",
+      card: "transparent",
+      border: "transparent",
+    },
+  } as const;
+
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <ThemeProvider value={theme}>
       <Stack screenOptions={{ headerShown: false }}>
         {/* Protected area: only for authenticated users */}
         <Stack.Protected guard={isAuthenticated}>

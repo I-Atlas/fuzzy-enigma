@@ -45,7 +45,7 @@ export default function Button({
 const styles = StyleSheet.create({
   button: {
     height: 56,
-    borderRadius: 16,
+    borderRadius: 28,
     backgroundColor: "#0A6CFF",
     alignItems: "center",
     justifyContent: "center",
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: "#fff",
-    fontSize: 18,
-    fontWeight: "600",
+    fontSize: 16,
+    fontWeight: "500",
   },
 });

@@ -1,8 +1,8 @@
 import Logo from "@/assets/svg/logo.svg";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { applyPhoneMask, useAuthStore, validatePhone } from "@/stores/auth";
-import { Link, useRouter } from "expo-router";
+import { useAuthStore, validateEmail } from "@/stores/auth";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   Keyboard,
@@ -17,41 +17,32 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LoginScreen() {
   const router = useRouter();
-  const { setPhone, login } = useAuthStore();
-  const [localPhone, setLocalPhone] = useState("");
+  const { setEmail } = useAuthStore();
+  const [localEmail, setLocalEmail] = useState("");
   const [errors, setErrors] = useState<{
-    phone?: string | null;
+    email?: string | null;
   }>({});
-  const canSubmit = validatePhone(localPhone) === "";
+  const canSubmit = validateEmail(localEmail) === "";
 
   const onSubmit = () => {
-    const e = validatePhone(localPhone);
-    setErrors({ phone: e });
+    const e = validateEmail(localEmail);
+    setErrors({ email: e });
     if (!e) {
-      setPhone(localPhone.replace(/\D/g, "").slice(-10));
-      login();
-      router.replace("/(app)/(tabs)/home");
+      setEmail(localEmail.trim());
+      router.replace("/(auth)/confirm");
     }
   };
 
   const handleChange = (inputValue: string) => {
-    if (inputValue.length < localPhone.length) {
-      const maskedValue = applyPhoneMask(inputValue);
-      setLocalPhone(maskedValue);
-      setErrors((e) => ({ ...e, phone: null }));
-      return;
-    }
-
-    const maskedValue = applyPhoneMask(inputValue);
-    setLocalPhone(maskedValue);
-
-    const validationError = validatePhone(maskedValue);
-    setErrors((e) => ({ ...e, phone: validationError }));
+    setLocalEmail(inputValue);
+    const validationError = validateEmail(inputValue);
+    setErrors((e) => ({ ...e, email: validationError }));
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
+        style={{ flex: 1 }}
         behavior={Platform.select({ ios: "padding", android: undefined })}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -63,22 +54,22 @@ export default function LoginScreen() {
 
             <View style={styles.form}>
               <Input
-                value={localPhone}
+                value={localEmail}
                 onChangeText={handleChange}
-                placeholder="Номер телефона*"
-                keyboardType="phone-pad"
-                error={errors.phone ?? null}
+                placeholder="Email*"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                error={errors.email ?? null}
               />
             </View>
 
             <View style={styles.footer}>
-              <Button title="Войти" onPress={onSubmit} disabled={!canSubmit} />
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Text style={styles.text}>Нет аккаунта? </Text>
-                <Link href="/(auth)/register" style={styles.link} asChild>
-                  <Text style={styles.link}>Зарегистрироваться</Text>
-                </Link>
-              </View>
+              <Button
+                title="Продолжить"
+                onPress={onSubmit}
+                disabled={!canSubmit}
+              />
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -100,6 +91,4 @@ const styles = StyleSheet.create({
     right: 0,
     bottom: 24,
   },
-  text: { fontSize: 14, lineHeight: 20, fontWeight: "400", color: "#1F2937" },
-  link: { fontSize: 14, lineHeight: 20, fontWeight: "400", color: "#0A6CFF" },
 });
