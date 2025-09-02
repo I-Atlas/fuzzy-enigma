@@ -1,7 +1,7 @@
 import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Animated, {
   Easing,
@@ -42,7 +42,7 @@ function getTabMeta(routeName: RouteKey, focused: boolean) {
   }
 }
 
-export const PillTabBar: React.FC<BottomTabBarProps> = (props) => {
+export const PillTabBar: FC<BottomTabBarProps> = (props) => {
   const insets = useSafeAreaInsets();
   const bottomPadding = Math.max(insets.bottom, 8);
   const [containerWidth, setContainerWidth] = React.useState(0);

@@ -12,20 +12,18 @@
 ## 2. Project Structure
 
 ```
-/app
-  /home
-    index.tsx          // Home screen entry
-  /profile
-    index.tsx
+/app // Expo Router
 /components
   /home
-    HomeHeader.tsx
-    HomeList.tsx
-  /profile
-    ProfileCard.tsx
-  /common
+    HomeComponent.tsx
+    ...
+  /team
+    TeamComponent.tsx
+    ...
+  /ui
     Button.tsx
-    Card.tsx
+    Input.tsx
+    ...
 /hooks
   /home
     useHomeData.ts
@@ -51,8 +49,8 @@
 
 ### Rules
 
-- **Screens (`app/`)**: orchestrate navigation and compose components.
-- **Components (`components/`)**: split by domain (`components/home/`, `components/profile/`). Shared UI primitives go into `components/common/`.
+- **Screens (`app/`)**: expo router.
+- **Components (`components/`)**: split by domain (`components/home/`, `components/profile/`). Shared UI primitives go into `components/ui/`.
 - **Hooks (`hooks/`)**: split by domain (`hooks/home/`, `hooks/profile/`).
 - **Utils (`utils/`)**: split by domain (`utils/team/`, `utils/profile/`). Shared utilities (e.g., `formatDate`) go directly into `utils/`.
 - **State (`state/`)**: one file per Zustand store, typed.
@@ -86,7 +84,8 @@ export const NewComponent: FC<NewComponentProps> = ({
 - Always use **`FC<Props>`** with explicit props interface.
 - Name boolean props and constants with `is`, `has`, or `can`.
 - Keep components **small and composable**.
-- Extract **reusable UI primitives** into `components/common/`.
+- Extract **reusable UI primitives** into `components/ui/`.
+- Do not use export default in components.
 
 ---
 

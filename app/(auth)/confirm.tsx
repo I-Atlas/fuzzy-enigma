@@ -1,6 +1,5 @@
 import Logo from "@/assets/svg/logo.svg";
-import Button from "@/components/ui/Button";
-import Input from "@/components/ui/Input";
+import { Button, Input } from "@/components/ui";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";

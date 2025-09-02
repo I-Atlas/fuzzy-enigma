@@ -1,4 +1,4 @@
-import { TEAM_MEMBERS } from "@/components/team/data";
+import { TEAM_MEMBERS } from "@/data/team";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   avatar: { width: 150, height: 150, resizeMode: "cover" },
-  name: { marginTop: 16, fontSize: 24, fontWeight: "800", color: "#1C1C1E" },
+  name: { marginTop: 16, fontSize: 24, fontWeight: "800", color: "#333333" },
   role: { marginTop: 4, fontSize: 13, color: "#8E8E93" },
   card: {
     alignSelf: "stretch",
@@ -115,10 +115,10 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 18,
     fontWeight: "800",
-    color: "#1C1C1E",
+    color: "#333333",
     marginBottom: 8,
   },
-  cardText: { fontSize: 14, color: "#1C1C1E" },
+  cardText: { fontSize: 14, color: "#333333" },
   audioRow: {
     flexDirection: "row",
     alignItems: "center",

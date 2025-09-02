@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   emoji: { fontSize: 64 },
-  name: { marginTop: 16, fontSize: 24, fontWeight: "800", color: "#1C1C1E" },
+  name: { marginTop: 16, fontSize: 24, fontWeight: "800", color: "#333333" },
   role: { marginTop: 4, fontSize: 13, color: "#8E8E93" },
   coins: {
     flexDirection: "row",
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
-  coinText: { fontSize: 16, fontWeight: "700", color: "#1C1C1E" },
+  coinText: { fontSize: 16, fontWeight: "700", color: "#333333" },
 
   card: {
     alignSelf: "stretch",
@@ -178,10 +178,10 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 18,
     fontWeight: "800",
-    color: "#1C1C1E",
+    color: "#333333",
     marginBottom: 8,
   },
-  cardText: { fontSize: 14, color: "#1C1C1E" },
+  cardText: { fontSize: 14, color: "#333333" },
   contactsRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   contactPill: {
     backgroundColor: "#EDF4FF",

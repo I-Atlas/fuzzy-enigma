@@ -1,7 +1,9 @@
-import { DailyQuestCard } from "@/components/home/DailyQuestCard";
-import { HomeSegmentedTabs } from "@/components/home/HomeSegmentedTabs";
-import { QuickStartSection } from "@/components/home/QuickStartSection";
-import { WelcomeHeader } from "@/components/home/WelcomeHeader";
+import {
+  DailyQuestCard,
+  HomeSegmentedTabs,
+  QuickStartSection,
+  WelcomeHeader,
+} from "@/components/home";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "expo-router";
 import React from "react";

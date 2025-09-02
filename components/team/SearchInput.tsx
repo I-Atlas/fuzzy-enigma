@@ -1,23 +1,23 @@
-import React from "react";
+import React, { FC } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-type Props = {
+interface SearchInputProps {
   value: string;
   onChangeText: (text: string) => void;
   onFocus?: () => void;
   onCancel?: () => void;
   isFocused?: boolean;
   placeholder?: string;
-};
+}
 
-export default function SearchInput({
+export const SearchInput: FC<SearchInputProps> = ({
   value,
   onChangeText,
   onFocus,
   onCancel,
   isFocused,
   placeholder = "Имя сотрудника или роль",
-}: Props) {
+}) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -35,7 +35,7 @@ export default function SearchInput({
       ) : null}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

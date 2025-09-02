@@ -1,28 +1,23 @@
-import type { TeamMember } from "@/types";
 import React, { FC } from "react";
 import { Dimensions, FlatList, StyleSheet, View } from "react-native";
-import { MemberCard } from "./MemberCard";
+import { QuickStartCard, QuickStartCardProps } from "./QuickStartCard";
 
-interface MemberCarouselProps {
-  members: TeamMember[];
-  onPressMember?: (member: TeamMember) => void;
+interface QuickStartCarouselProps {
+  items: QuickStartCardProps[];
 }
 
-export const MemberCarousel: FC<MemberCarouselProps> = ({
-  members,
-  onPressMember,
-}) => {
-  const SIDE_PEEK = 32; // visible part of previous/next slide on each side
-  const ITEM_SPACING = 12; // space between slides
-  const { width: screenWidth } = Dimensions.get("window");
-  const itemWidth = screenWidth - SIDE_PEEK * 2;
+export const QuickStartCarousel: FC<QuickStartCarouselProps> = ({ items }) => {
+  const SIDE_PEEK = 32;
+  const ITEM_SPACING = 12;
+  const { width } = Dimensions.get("window");
+  const itemWidth = width - SIDE_PEEK * 2;
 
   return (
     <View style={styles.container} pointerEvents="auto">
       <FlatList
         horizontal
-        data={members}
-        keyExtractor={(m) => `${m.id}`}
+        data={items}
+        keyExtractor={(_, idx) => `qs-${idx}`}
         showsHorizontalScrollIndicator={false}
         decelerationRate="fast"
         snapToAlignment="start"
@@ -31,7 +26,7 @@ export const MemberCarousel: FC<MemberCarouselProps> = ({
         ItemSeparatorComponent={() => <View style={{ width: ITEM_SPACING }} />}
         renderItem={({ item }) => (
           <View style={[styles.cardContainer, { width: itemWidth }]}>
-            <MemberCard member={item} onPress={onPressMember} />
+            <QuickStartCard {...item} />
           </View>
         )}
       />
@@ -41,6 +36,5 @@ export const MemberCarousel: FC<MemberCarouselProps> = ({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  pager: { flex: 1 },
   cardContainer: { flex: 1 },
 });

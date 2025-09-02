@@ -1,12 +1,4 @@
-export type TeamMember = {
-  id: string;
-  fullName: string;
-  role: string;
-  bio: string;
-  tags: string[];
-  avatarUrl: string;
-  coverUrl?: string;
-};
+import { TeamMember } from "@/types";
 
 export const TEAM_MEMBERS: TeamMember[] = [
   {

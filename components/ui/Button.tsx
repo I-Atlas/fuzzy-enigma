@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   ActivityIndicator,
   GestureResponderEvent,
@@ -7,19 +7,19 @@ import {
   Text,
 } from "react-native";
 
-type ButtonProps = {
+interface ButtonProps {
   title: string;
   onPress?: (event: GestureResponderEvent) => void;
   disabled?: boolean;
   loading?: boolean;
-};
+}
 
-export default function Button({
+export const Button: FC<ButtonProps> = ({
   title,
   onPress,
   disabled,
   loading,
-}: ButtonProps) {
+}) => {
   const isDisabled = disabled || loading;
 
   return (
@@ -40,7 +40,7 @@ export default function Button({
       )}
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {

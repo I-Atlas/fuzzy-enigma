@@ -1,8 +1,7 @@
-import { TEAM_MEMBERS, type TeamMember } from "@/components/team/data";
-import MemberCarousel from "@/components/team/MemberCarousel";
-import MemberList from "@/components/team/MemberList";
-import SearchInput from "@/components/team/SearchInput";
-import Button from "@/components/ui/Button";
+import { MemberCarousel, MemberList, SearchInput } from "@/components/team";
+import { Button } from "@/components/ui";
+import { TEAM_MEMBERS } from "@/data/team";
+import { TeamMember } from "@/types";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import {

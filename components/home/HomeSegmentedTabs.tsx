@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -21,7 +21,7 @@ const TABS: { key: TabKey; title: string }[] = [
   { key: "remote", title: "Для удаленщиков" },
 ];
 
-export const HomeSegmentedTabs: React.FC<HomeSegmentedTabsProps> = ({
+export const HomeSegmentedTabs: FC<HomeSegmentedTabsProps> = ({
   value,
   onChange,
 }) => {
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#1C1C1E",
+    color: "#333333",
   },
   labelActive: {
     color: "#FFFFFF",

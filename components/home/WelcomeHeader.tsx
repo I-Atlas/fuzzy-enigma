@@ -1,7 +1,7 @@
 import FavoritesIcon from "@/assets/svg/favorites.svg";
 import NotificationIcon from "@/assets/svg/notification.svg";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { FC } from "react";
 import {
   Pressable,
   StyleSheet,
@@ -14,7 +14,7 @@ interface WelcomeHeaderProps {
   name: string;
 }
 
-export const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({ name }) => {
+export const WelcomeHeader: FC<WelcomeHeaderProps> = ({ name }) => {
   const router = useRouter();
   return (
     <View style={styles.container}>
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   emojiContainer: {
     width: 48,
     height: 48,
-    borderRadius: "50%",
+    borderRadius: 24,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#FFF",

@@ -1,17 +1,12 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TextInputProps,
-  View,
-} from "react-native";
+import React, { FC } from "react";
+import type { TextInputProps } from "react-native";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
-type Props = TextInputProps & {
+interface InputProps extends TextInputProps {
   error?: string | null;
-};
+}
 
-export default function Input({ error, style, ...rest }: Props) {
+export const Input: FC<InputProps> = ({ error, style, ...rest }) => {
   const hasError = Boolean(error);
   return (
     <View>
@@ -23,7 +18,7 @@ export default function Input({ error, style, ...rest }: Props) {
       {hasError ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   input: {

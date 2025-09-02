@@ -8,7 +8,7 @@ export default function AppAreaLayout() {
         headerShadowVisible: false,
         headerTitle: "",
         headerBackTitle: "",
-        headerTintColor: "#1C1C1E",
+        headerTintColor: "#333333",
         headerStyle: { backgroundColor: "#F7F7F7" },
         contentStyle: { backgroundColor: "#F7F7F7" },
       }}

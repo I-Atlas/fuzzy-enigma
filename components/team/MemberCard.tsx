@@ -1,17 +1,21 @@
-import React from "react";
+import React, { FC } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import type { TeamMember } from "./data";
+import type { TeamMember } from "@/types";
 
-type Props = {
+interface MemberCardProps {
   member: TeamMember;
   onPress?: (member: TeamMember) => void;
-  compact?: boolean;
-};
+  isCompact?: boolean;
+}
 
-export default function MemberCard({ member, onPress, compact }: Props) {
+export const MemberCard: FC<MemberCardProps> = ({
+  member,
+  onPress,
+  isCompact,
+}) => {
   const handlePress = () => onPress?.(member);
 
-  if (compact) {
+  if (isCompact) {
     return (
       <Pressable
         onPress={handlePress}
@@ -64,7 +68,7 @@ export default function MemberCard({ member, onPress, compact }: Props) {
       </View>
     </Pressable>
   );
-}
+};
 
 const styles = StyleSheet.create({
   card: {
