@@ -76,6 +76,7 @@ export default function TeamScreen() {
             </Animated.View>
           ) : (
             <Animated.View
+              style={{ flex: 1 }}
               entering={FadeIn.duration(150)}
               exiting={FadeOut.duration(120)}
             >

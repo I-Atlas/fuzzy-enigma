@@ -1,5 +1,5 @@
 import Logo from "@/assets/svg/logo.svg";
-import { Button, Input } from "@/components/ui";
+import { Button, Input, Typography } from "@/components/ui";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -8,7 +8,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -70,13 +69,20 @@ export default function ConfirmScreen() {
           <View style={{ flex: 1 }}>
             <View style={styles.header}>
               <Logo />
-              <Text style={styles.title}>Подтверждение</Text>
+              <Typography
+                variant="bold"
+                size={28}
+                color="#1F2937"
+                style={styles.title}
+              >
+                Подтверждение
+              </Typography>
             </View>
 
             <View style={styles.form}>
-              <Text style={styles.subtitle}>
+              <Typography size={14} color="#808080" style={styles.subtitle}>
                 Код отправлен на адрес {email}
-              </Text>
+              </Typography>
               <Input
                 value={code}
                 onChangeText={onChange}
@@ -115,15 +121,10 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: 8,
-    fontSize: 28,
     lineHeight: 34,
-    fontWeight: "700",
-    color: "#1F2937",
   },
   subtitle: {
     textAlign: "center",
-    fontSize: 14,
-    color: "#808080",
   },
   form: {
     flexDirection: "column",

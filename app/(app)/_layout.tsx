@@ -16,7 +16,10 @@ export default function AppAreaLayout() {
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="profile" />
       <Stack.Screen name="team/[memberId]" />
-      <Stack.Screen name="article/[id]" />
+      <Stack.Screen
+        name="article/[id]"
+        options={{ headerStyle: { backgroundColor: "#FF9B34" } }}
+      />
       <Stack.Screen name="podcast/[id]/episode/[episodeId]" />
     </Stack>
   );

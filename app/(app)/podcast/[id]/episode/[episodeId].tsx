@@ -1,6 +1,7 @@
+import { Typography } from "@/components/ui";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function PodcastEpisodeScreen() {
   const { id, episodeId } = useLocalSearchParams<{
@@ -9,15 +10,17 @@ export default function PodcastEpisodeScreen() {
   }>();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Выпуск подкаста</Text>
-      <Text>Podcast ID: {id}</Text>
-      <Text>Episode ID: {episodeId}</Text>
-      <Text>Здесь будет плеер</Text>
+      <Typography variant="semi-bold" size={24} style={styles.title}>
+        Выпуск подкаста
+      </Typography>
+      <Typography>Podcast ID: {id}</Typography>
+      <Typography>Episode ID: {episodeId}</Typography>
+      <Typography>Здесь будет плеер</Typography>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center", justifyContent: "center" },
-  title: { fontSize: 24, fontWeight: "600", marginBottom: 8 },
+  title: { marginBottom: 8 },
 });

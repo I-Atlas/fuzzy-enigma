@@ -1,13 +1,9 @@
+import { Typography } from "@/components/ui";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React, { FC } from "react";
-import {
-  Image,
-  ImageSourcePropType,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Image, ImageSourcePropType, StyleSheet, View } from "react-native";
 
 export interface QuickStartAvatar {
   id: string | number;
@@ -15,24 +11,40 @@ export interface QuickStartAvatar {
 }
 
 export interface QuickStartCardProps {
+  id: string;
   title: string;
+  type: "podcast" | "article";
   description?: string;
   cta?: string;
-  onPress?: () => void;
   gradientColors: [string, string];
   iconName?: React.ComponentProps<typeof Ionicons>["name"];
   avatars?: QuickStartAvatar[];
 }
 
 export const QuickStartCard: FC<QuickStartCardProps> = ({
+  id,
   title,
+  type,
   description,
   cta,
-  onPress,
   gradientColors,
   iconName = "headset-outline",
   avatars = [],
 }) => {
+  const router = useRouter();
+  const handlePress = () => {
+    if (type === "article") {
+      router.push({
+        pathname: "/(app)/article/[id]",
+        params: { id: id },
+      });
+    } else if (type === "podcast") {
+      router.push({
+        pathname: "/(app)/podcast/[id]",
+        params: { id: id },
+      });
+    }
+  };
   return (
     <LinearGradient
       colors={gradientColors}
@@ -41,17 +53,29 @@ export const QuickStartCard: FC<QuickStartCardProps> = ({
       style={styles.card}
     >
       <View style={styles.headerRow}>
-        <Text style={styles.title} numberOfLines={1} ellipsizeMode="tail">
+        <Typography
+          variant="bold"
+          color="grey"
+          size={18}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
           {title}
-        </Text>
+        </Typography>
         <View style={styles.iconBadge}>
           <Ionicons name={iconName} size={18} color="rgba(255,255,255,0.6)" />
         </View>
       </View>
       {!!description && (
-        <Text style={styles.description} numberOfLines={3} ellipsizeMode="tail">
+        <Typography
+          color="grey"
+          size={13}
+          numberOfLines={3}
+          ellipsizeMode="tail"
+          style={{ opacity: 0.85 }}
+        >
           {description}
-        </Text>
+        </Typography>
       )}
       <View style={styles.flexSpacer} />
 
@@ -73,11 +97,18 @@ export const QuickStartCard: FC<QuickStartCardProps> = ({
           <View
             style={styles.cta}
             accessibilityRole="button"
-            onTouchEnd={onPress}
+            onTouchEnd={handlePress}
           >
-            <Text style={styles.ctaText} numberOfLines={1} ellipsizeMode="tail">
+            <Typography
+              variant="medium"
+              color="grey"
+              size={12}
+              numberOfLines={1}
+              ellipsizeMode="tail"
+              style={{ maxWidth: 160, flexShrink: 1 }}
+            >
               {cta}
-            </Text>
+            </Typography>
             <Ionicons name="play" size={16} color="#333333" />
           </View>
         )}
@@ -110,17 +141,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  title: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#333333",
-  },
-  description: {
-    marginTop: 8,
-    fontSize: 13,
-    color: "#333333",
-    opacity: 0.85,
-  },
+
   bottomRow: {
     marginTop: 14,
     flexDirection: "row",
@@ -155,12 +176,5 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     backgroundColor: "rgba(255,255,255,0.9)",
     gap: 8,
-  },
-  ctaText: {
-    fontSize: 12,
-    fontWeight: "medium",
-    color: "#333333",
-    maxWidth: 160,
-    flexShrink: 1,
   },
 });

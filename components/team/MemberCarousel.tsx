@@ -41,6 +41,5 @@ export const MemberCarousel: FC<MemberCarouselProps> = ({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  pager: { flex: 1 },
   cardContainer: { flex: 1 },
 });

@@ -1,19 +1,22 @@
+import { Typography } from "@/components/ui";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function EpisodeDescriptionModal() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Описание выпуска подкаста</Text>
-      <Text style={styles.text}>
+      <Typography variant="bold" size={20} style={styles.title}>
+        Описание выпуска подкаста
+      </Typography>
+      <Typography size={16} style={styles.text}>
         Тут будет подробное описание и кнопки действий.
-      </Text>
+      </Typography>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: "#fff" },
-  title: { fontSize: 20, fontWeight: "700", marginBottom: 12 },
-  text: { fontSize: 16, lineHeight: 22 },
+  title: { marginBottom: 12 },
+  text: { lineHeight: 22 },
 });

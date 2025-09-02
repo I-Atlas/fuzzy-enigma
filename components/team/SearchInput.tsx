@@ -1,5 +1,6 @@
+import { Typography } from "@/components/ui";
 import React, { FC } from "react";
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 
 interface SearchInputProps {
   value: string;
@@ -30,7 +31,9 @@ export const SearchInput: FC<SearchInputProps> = ({
       />
       {isFocused ? (
         <Pressable accessibilityRole="button" onPress={onCancel}>
-          <Text style={styles.cancel}>Отмена</Text>
+          <Typography variant="medium" color="blue" size={16}>
+            Отмена
+          </Typography>
         </Pressable>
       ) : null}
     </View>
@@ -57,10 +60,5 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.08,
     shadowRadius: 12,
-  },
-  cancel: {
-    color: "#0A6CFF",
-    fontSize: 16,
-    fontWeight: "500",
   },
 });

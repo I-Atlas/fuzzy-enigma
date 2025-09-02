@@ -2,7 +2,7 @@ import type { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Animated, {
   Easing,
   useAnimatedStyle,
@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Typography } from "./Typography";
 
 import Chat from "@/assets/svg/tabs/chat.svg";
 import ChatSelected from "@/assets/svg/tabs/chat_selected.svg";
@@ -113,9 +114,13 @@ export const PillTabBar: FC<BottomTabBarProps> = (props) => {
               activeOpacity={0.5}
             >
               <Icon width={24} height={24} />
-              <Text style={[styles.label, isFocused && styles.labelFocused]}>
+              <Typography
+                variant="medium"
+                color={isFocused ? "white" : "blue"}
+                size={12}
+              >
                 {label}
-              </Text>
+              </Typography>
             </TouchableOpacity>
           );
         })}
@@ -164,14 +169,6 @@ const styles = StyleSheet.create({
   },
   itemFocused: {
     backgroundColor: "transparent",
-  },
-  label: {
-    fontSize: 12,
-    fontWeight: "500",
-    color: "#007AFF",
-  },
-  labelFocused: {
-    color: "#fff",
   },
   bottomFade: {
     position: "absolute",

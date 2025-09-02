@@ -22,7 +22,7 @@ export const QuickStartCarousel: FC<QuickStartCarouselProps> = ({ items }) => {
         decelerationRate="fast"
         snapToAlignment="start"
         snapToInterval={itemWidth + ITEM_SPACING}
-        contentContainerStyle={{ paddingHorizontal: SIDE_PEEK }}
+        contentContainerStyle={{ paddingHorizontal: 16 }}
         ItemSeparatorComponent={() => <View style={{ width: ITEM_SPACING }} />}
         renderItem={({ item }) => (
           <View style={[styles.cardContainer, { width: itemWidth }]}>

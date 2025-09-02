@@ -1,5 +1,5 @@
 import Logo from "@/assets/svg/logo.svg";
-import { Button, Input } from "@/components/ui";
+import { Button, Input, Typography } from "@/components/ui";
 import { useAuthStore, validateEmail } from "@/stores/auth";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -8,7 +8,6 @@ import {
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
-  Text,
   TouchableWithoutFeedback,
   View,
 } from "react-native";
@@ -48,7 +47,14 @@ export default function LoginScreen() {
           <View style={{ flex: 1 }}>
             <View style={styles.header}>
               <Logo />
-              <Text style={styles.title}>Вход</Text>
+              <Typography
+                variant="bold"
+                size={28}
+                color="#1F2937"
+                style={styles.title}
+              >
+                Вход
+              </Typography>
             </View>
 
             <View style={styles.form}>
@@ -80,7 +86,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#F7F7F7", paddingHorizontal: 16 },
   header: { marginTop: 24, alignItems: "center", gap: 16 },
-  title: { fontSize: 28, lineHeight: 34, fontWeight: "700", color: "#1F2937" },
+  title: { lineHeight: 34 },
   form: { marginTop: 24, width: "100%" },
   footer: {
     flexDirection: "column",

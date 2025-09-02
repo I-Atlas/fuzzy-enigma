@@ -7,5 +7,6 @@ export default function Index() {
   if (isAuthenticated) {
     return <Redirect href="/(app)/(tabs)/home" />;
   }
-  return <Redirect href="/(auth)/login" />;
+  // Casting is used to avoid stale type unions before router types regenerate
+  return <Redirect href={"/(auth)/welcome" as unknown as any} />;
 }

@@ -1,20 +1,13 @@
 import FavoritesIcon from "@/assets/svg/favorites.svg";
 import NotificationIcon from "@/assets/svg/notification.svg";
+import { useProfileStore } from "@/stores/profile";
 import { useRouter } from "expo-router";
 import React, { FC } from "react";
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Typography } from "../ui";
 
-interface WelcomeHeaderProps {
-  name: string;
-}
-
-export const WelcomeHeader: FC<WelcomeHeaderProps> = ({ name }) => {
+export const WelcomeHeader: FC = () => {
+  const { fullName } = useProfileStore();
   const router = useRouter();
   return (
     <View style={styles.container}>
@@ -34,9 +27,18 @@ export const WelcomeHeader: FC<WelcomeHeaderProps> = ({ name }) => {
         style={styles.bottomRow}
       >
         <View style={styles.emojiContainer}>
-          <Text style={styles.emoji}>🐥</Text>
+          <Typography size={32}>🐥</Typography>
         </View>
-        <Text style={styles.greeting}>Привет, {name} 👋</Text>
+        <Typography
+          variant="bold"
+          color="grey"
+          size={24}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          style={{ flex: 1 }}
+        >
+          Привет, {fullName || "незнакомец"} 👋
+        </Typography>
       </Pressable>
     </View>
   );

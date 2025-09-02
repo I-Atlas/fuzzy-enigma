@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import type { TextInputProps } from "react-native";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, TextInput, View } from "react-native";
+import { Typography } from "./Typography";
 
 interface InputProps extends TextInputProps {
   error?: string | null;
@@ -15,7 +16,11 @@ export const Input: FC<InputProps> = ({ error, style, ...rest }) => {
         style={[styles.input, hasError ? styles.inputError : undefined, style]}
         {...rest}
       />
-      {hasError ? <Text style={styles.errorText}>{error}</Text> : null}
+      {hasError ? (
+        <Typography color="#DC2626" size={14} style={styles.errorText}>
+          {error}
+        </Typography>
+      ) : null}
     </View>
   );
 };
@@ -42,7 +47,5 @@ const styles = StyleSheet.create({
   errorText: {
     marginTop: 8,
     marginLeft: 12,
-    color: "#DC2626",
-    fontSize: 14,
   },
 });

@@ -1,4 +1,5 @@
 import Coin from "@/assets/svg/coin.svg";
+import { Typography } from "@/components/ui";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { FC } from "react";
@@ -6,18 +7,17 @@ import {
   Image,
   ImageSourcePropType,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
 
-interface ChecklistItem {
+export interface ChecklistItem {
   id: string;
   text: string;
   isDone?: boolean;
 }
 
-interface DailyQuestCardProps {
+export interface DailyQuestCardProps {
   title?: string;
   reward?: number;
   items?: ChecklistItem[];
@@ -25,21 +25,10 @@ interface DailyQuestCardProps {
   backgroundImage?: ImageSourcePropType;
 }
 
-const DEFAULT_ITEMS: ChecklistItem[] = [
-  {
-    id: "1",
-    text: "Сфотографируйте секретный арт на стене в комнате для переговоров.",
-  },
-  {
-    id: "2",
-    text: "Найдите сотрудника с очками VR.",
-  },
-];
-
 export const DailyQuestCard: FC<DailyQuestCardProps> = ({
   title = "Стань офисным ниндзя",
   reward = 3,
-  items = DEFAULT_ITEMS,
+  items = [],
   gradientColors = ["#B7E1FF", "#E7F5FF"],
   backgroundImage,
 }) => {
@@ -64,9 +53,18 @@ export const DailyQuestCard: FC<DailyQuestCardProps> = ({
 
       <View style={styles.content}>
         <View style={styles.headerRow}>
-          <Text style={styles.cardTitle}>«{title}»</Text>
+          <Typography
+            variant="bold"
+            color="grey"
+            size={18}
+            style={styles.cardTitleText}
+          >
+            «{title}»
+          </Typography>
           <View style={styles.reward}>
-            <Text style={styles.rewardText}>{reward}</Text>
+            <Typography variant="bold" color="white" size={16}>
+              {reward}
+            </Typography>
             <Coin width={16} height={16} />
           </View>
         </View>
@@ -77,19 +75,28 @@ export const DailyQuestCard: FC<DailyQuestCardProps> = ({
               <View
                 style={[styles.checkbox, item.isDone && styles.checkboxDone]}
               />
-              <Text style={styles.itemText}>{item.text}</Text>
+              <Typography color="grey" size={14} style={{ flex: 1 }}>
+                {item.text}
+              </Typography>
             </View>
           ))}
         </View>
 
         <View style={styles.progressBar}>
-          <View style={styles.progressFill} />
+          <View
+            style={[
+              styles.progressFill,
+              { width: `${Math.round(progress * 100)}%` },
+            ]}
+          />
         </View>
 
         <View style={{ flexGrow: 1 }} />
 
         <TouchableOpacity activeOpacity={0.5} style={styles.cta}>
-          <Text style={styles.ctaText}>Начать</Text>
+          <Typography variant="semi-bold" color="grey" size={14}>
+            Начать
+          </Typography>
           <Ionicons name="arrow-forward-outline" size={18} color="#333333" />
         </TouchableOpacity>
       </View>
@@ -117,25 +124,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 12,
   },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#333333",
+  cardTitleText: {
     flex: 1,
   },
   reward: {
-    backgroundColor: "rgba(255,255,255,0.85)",
-    borderRadius: 14,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
+    backgroundColor: "rgba(0,0,0,0.4)",
+    borderRadius: 12,
+    padding: 4,
     flexDirection: "row",
     alignItems: "center",
-    gap: 6,
-  },
-  rewardText: {
-    fontSize: 12,
-    fontWeight: "700",
-    color: "#333333",
+    gap: 2,
   },
   list: {
     gap: 10,
@@ -155,11 +153,6 @@ const styles = StyleSheet.create({
   checkboxDone: {
     backgroundColor: "#34C759",
   },
-  itemText: {
-    flex: 1,
-    color: "#333333",
-    fontSize: 14,
-  },
   progressBar: {
     height: 4,
     backgroundColor: "#FFFFFF",
@@ -170,7 +163,6 @@ const styles = StyleSheet.create({
   progressFill: {
     height: 4,
     backgroundColor: "#007AFF",
-    width: "50%",
   },
   cta: {
     alignSelf: "flex-start",
@@ -181,10 +173,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 8,
-  },
-  ctaText: {
-    color: "#333333",
-    fontWeight: "600",
-    fontSize: 14,
   },
 });

@@ -1,8 +1,9 @@
+import { Typography } from "@/components/ui";
 import { TEAM_MEMBERS } from "@/data/team";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import Animated, { FadeIn } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -13,7 +14,9 @@ export default function TeamMemberProfileScreen() {
   if (!member) {
     return (
       <SafeAreaView style={styles.containerCenter}>
-        <Text style={styles.missingTitle}>Сотрудник не найден</Text>
+        <Typography variant="semi-bold" size={24}>
+          Сотрудник не найден
+        </Typography>
       </SafeAreaView>
     );
   }
@@ -26,47 +29,90 @@ export default function TeamMemberProfileScreen() {
         <View style={styles.avatarWrap}>
           <Image source={{ uri: member.avatarUrl }} style={styles.avatar} />
         </View>
-        <Text style={styles.name}>{member.fullName}</Text>
-        <Text style={styles.role}>{member.role}</Text>
+        <Typography
+          variant="bold"
+          size={24}
+          color="#333333"
+          style={styles.name}
+        >
+          {member.fullName}
+        </Typography>
+        <Typography size={13} color="#8E8E93" style={styles.role}>
+          {member.role}
+        </Typography>
 
         <Animated.View entering={FadeIn.duration(200)} style={styles.card}>
-          <Text style={styles.cardTitle}>Обо мне</Text>
-          <Text style={styles.cardText}>{member.bio}</Text>
+          <Typography
+            variant="bold"
+            size={18}
+            color="#333333"
+            style={styles.cardTitle}
+          >
+            Обо мне
+          </Typography>
+          <Typography size={14} color="#333333">
+            {member.bio}
+          </Typography>
         </Animated.View>
 
         <Animated.View entering={FadeIn.duration(240)} style={styles.card}>
-          <Text style={styles.cardTitle}>Совет для вас</Text>
+          <Typography
+            variant="bold"
+            size={18}
+            color="#333333"
+            style={styles.cardTitle}
+          >
+            Совет для вас
+          </Typography>
           <View style={styles.audioRow}>
             <View style={styles.playCircle}>
               <Ionicons name="play" size={20} color="#1C6CFF" />
             </View>
             <View style={styles.wave} />
             <View style={styles.durationPill}>
-              <Text style={styles.durationText}>0:20</Text>
+              <Typography variant="semi-bold" color="#1C6CFF">
+                0:20
+              </Typography>
             </View>
           </View>
         </Animated.View>
 
-        <Animated.View entering={FadeIn.duration(260)} style={styles.card}>
-          <Text style={styles.cardTitle}>Интересы</Text>
+        <Animated.View entering={FadeIn.duration(280)} style={styles.card}>
+          <Typography
+            variant="bold"
+            size={18}
+            color="#333333"
+            style={styles.cardTitle}
+          >
+            Интересы
+          </Typography>
           <View style={styles.tagsRow}>
             {member.tags.map((t) => (
               <View key={t} style={styles.tag}>
-                <Text style={styles.tagText}>#{t}</Text>
+                <Typography variant="semi-bold" color="#5E75FF">
+                  #{t}
+                </Typography>
               </View>
             ))}
           </View>
         </Animated.View>
 
         <Animated.View entering={FadeIn.duration(280)} style={styles.card}>
-          <Text style={styles.cardTitle}>Контакты:</Text>
+          <Typography
+            variant="bold"
+            size={18}
+            color="#333333"
+            style={styles.cardTitle}
+          >
+            Контакты:
+          </Typography>
           <View style={styles.contactsRow}>
             <Ionicons name="paper-plane-outline" size={26} color="#229ED9" />
             <Ionicons name="logo-vk" size={26} color="#0077FF" />
             <View style={styles.contactPill}>
-              <Text style={styles.contactText}>
+              <Typography variant="semi-bold" color="#2F68FF">
                 {member.fullName.split(" ")[0].toLowerCase()}@example.com
-              </Text>
+              </Typography>
             </View>
           </View>
         </Animated.View>
@@ -83,7 +129,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#F2F2F7",
   },
-  missingTitle: { fontSize: 24, fontWeight: "600" },
   content: { alignItems: "center", paddingBottom: 40 },
   headerRow: { alignSelf: "stretch", paddingHorizontal: 12, paddingTop: 6 },
   avatarWrap: {
@@ -97,8 +142,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   avatar: { width: 150, height: 150, resizeMode: "cover" },
-  name: { marginTop: 16, fontSize: 24, fontWeight: "800", color: "#333333" },
-  role: { marginTop: 4, fontSize: 13, color: "#8E8E93" },
+  name: { marginTop: 16 },
+  role: { marginTop: 4 },
   card: {
     alignSelf: "stretch",
     marginHorizontal: 16,
@@ -112,13 +157,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 6,
   },
-  cardTitle: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#333333",
-    marginBottom: 8,
-  },
-  cardText: { fontSize: 14, color: "#333333" },
+  cardTitle: { marginBottom: 8 },
   audioRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -142,7 +181,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 12,
   },
-  durationText: { color: "#1C6CFF", fontWeight: "600" },
   tagsRow: { flexDirection: "row", flexWrap: "wrap", gap: 8 },
   tag: {
     backgroundColor: "#F3F3FF",
@@ -150,7 +188,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 16,
   },
-  tagText: { color: "#5E75FF", fontWeight: "600" },
   contactsRow: { flexDirection: "row", alignItems: "center", gap: 8 },
   contactPill: {
     backgroundColor: "#EDF4FF",
@@ -158,5 +195,4 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 14,
   },
-  contactText: { color: "#2F68FF", fontWeight: "600" },
 });

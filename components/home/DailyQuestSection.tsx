@@ -1,37 +1,30 @@
-import React, { FC, useMemo } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { DailyQuestCard } from "./DailyQuestCard";
+import { Typography } from "@/components/ui";
+import React, { FC } from "react";
+import { StyleSheet, View } from "react-native";
+import { DailyQuestCard, DailyQuestCardProps } from "./DailyQuestCard";
 
-export const DailyQuestSection: FC = () => {
-  const items = useMemo(
-    () => [
-      {
-        id: "1",
-        text: "Сфотографируйте секретный арт на стене в комнате для переговоров.",
-      },
-      { id: "2", text: "Найдите сотрудника с очками VR." },
-    ],
-    [],
-  );
+interface DailyQuestSectionProps {
+  title?: string;
+  card?: DailyQuestCardProps;
+}
 
+export const DailyQuestSection: FC<DailyQuestSectionProps> = ({
+  title = "Ежедневный квест",
+  card,
+}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Ежедневный квест</Text>
-      <DailyQuestCard items={items} />
+      <Typography variant="bold" color="grey" size={24}>
+        {title}
+      </Typography>
+      <DailyQuestCard {...(card ?? {})} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    gap: 12,
-  },
-  title: {
+    gap: 20,
     paddingHorizontal: 16,
-    fontSize: 24,
-    fontWeight: "800",
-    color: "#333333",
   },
 });
-
-export default DailyQuestSection;

@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { useProfileStore } from "./profile";
 
 export type AuthState = {
   email: string;
@@ -31,8 +32,40 @@ export const useAuthStore = create<AuthState>()(
         set({ code: code, codeExpiresAt: Date.now() + ttlMs });
         return code;
       },
-      login: () => set({ isAuthenticated: true }),
-      logout: () => set({ isAuthenticated: false }),
+      login: () => {
+        set({ isAuthenticated: true });
+        const email = (get().email || "").trim();
+        if (email) {
+          const profile = useProfileStore.getState();
+          const emailItem = {
+            type: "email" as const,
+            label: email,
+            url: `mailto:${email}`,
+          };
+          const existing = profile.socials.find((s) => s.type === "email");
+          if (!existing) {
+            profile.addSocial(emailItem);
+          } else if (
+            existing.label !== email ||
+            existing.url !== `mailto:${email}`
+          ) {
+            profile.setSocials(
+              profile.socials.map((s) => (s.type === "email" ? emailItem : s)),
+            );
+          }
+        }
+      },
+      logout: () => {
+        set({ isAuthenticated: false });
+        // Clear auth state (email, code, ttl)
+        get().reset();
+        // Clear profile store as part of logout
+        try {
+          useProfileStore.getState().reset();
+        } catch {
+          // noop: profile store might not be initialized yet
+        }
+      },
       reset: () => set({ email: "", code: "", codeExpiresAt: null }),
     }),
     {

@@ -3,15 +3,19 @@ import {
   ActivityIndicator,
   GestureResponderEvent,
   Pressable,
+  StyleProp,
   StyleSheet,
-  Text,
+  ViewStyle,
 } from "react-native";
+import { Typography } from "./Typography";
 
 interface ButtonProps {
   title: string;
   onPress?: (event: GestureResponderEvent) => void;
   disabled?: boolean;
   loading?: boolean;
+  variant?: "primary" | "elevated";
+  style?: StyleProp<ViewStyle>;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -19,8 +23,12 @@ export const Button: FC<ButtonProps> = ({
   onPress,
   disabled,
   loading,
+  variant = "primary",
+  style,
 }) => {
   const isDisabled = disabled || loading;
+  const isPrimary = variant === "primary";
+  const spinnerColor = isPrimary ? "#fff" : "#0A6CFF";
 
   return (
     <Pressable
@@ -28,28 +36,46 @@ export const Button: FC<ButtonProps> = ({
       onPress={onPress}
       disabled={isDisabled}
       style={({ pressed }) => [
-        styles.button,
+        styles.base,
+        isPrimary ? styles.primary : styles.elevated,
         pressed && !isDisabled ? styles.pressed : null,
         isDisabled ? styles.disabled : null,
+        style,
       ]}
     >
       {loading ? (
-        <ActivityIndicator color="#fff" />
+        <ActivityIndicator color={spinnerColor} />
       ) : (
-        <Text style={styles.title}>{title}</Text>
+        <Typography
+          variant="medium"
+          color={isPrimary ? "white" : "#0A6CFF"}
+          size={16}
+        >
+          {title}
+        </Typography>
       )}
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
+  base: {
     height: 56,
     borderRadius: 28,
-    backgroundColor: "#0A6CFF",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 16,
+  },
+  primary: {
+    backgroundColor: "#0A6CFF",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 2,
+  },
+  elevated: {
+    backgroundColor: "#FFFFFF",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.15,
@@ -61,11 +87,6 @@ const styles = StyleSheet.create({
     transform: [{ scale: 0.99 }],
   },
   disabled: {
-    backgroundColor: "#9DBBFF",
-  },
-  title: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "500",
+    opacity: 0.6,
   },
 });

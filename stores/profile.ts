@@ -34,19 +34,12 @@ const defaultState: Omit<
   ProfileState,
   "setField" | "setSocials" | "addSocial" | "removeSocial" | "reset"
 > = {
-  fullName: "Дмитрий Игнатов",
-  role: "Разработчик",
-  coins: 3,
+  fullName: "незнакомец",
+  role: "Твоя роль?",
+  coins: 0,
   about: "",
   interests: "",
-  socials: [
-    { type: "vk", label: "VK", url: "https://vk.com" },
-    {
-      type: "email",
-      label: "lubindiz_t@gmail.com",
-      url: "mailto:lubindiz_t@gmail.com",
-    },
-  ],
+  socials: [],
 };
 
 export const useProfileStore = create<ProfileState>()(

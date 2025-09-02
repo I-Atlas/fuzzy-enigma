@@ -1,15 +1,17 @@
+import { Typography } from "@/components/ui";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function NotificationsScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Уведомления</Text>
+      <Typography variant="semi-bold" size={24}>
+        Уведомления
+      </Typography>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center", justifyContent: "center" },
-  title: { fontSize: 24, fontWeight: "600" },
 });

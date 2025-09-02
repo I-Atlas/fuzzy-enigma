@@ -1,6 +1,7 @@
-import React, { FC } from "react";
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Typography } from "@/components/ui";
 import type { TeamMember } from "@/types";
+import React, { FC } from "react";
+import { Image, Pressable, StyleSheet, View } from "react-native";
 
 interface MemberCardProps {
   member: TeamMember;
@@ -27,15 +28,25 @@ export const MemberCard: FC<MemberCardProps> = ({
           style={styles.compactAvatar}
         />
         <View style={{ flex: 1 }}>
-          <Text style={styles.name}>{member.fullName}</Text>
-          <Text style={styles.role}>{member.role}</Text>
-          <Text style={styles.bio} numberOfLines={2}>
+          <Typography variant="semi-bold" color="grey" size={16}>
+            {member.fullName}
+          </Typography>
+          <Typography
+            color="grey"
+            size={14}
+            style={{ opacity: 0.7, marginTop: 2 }}
+          >
+            {member.role}
+          </Typography>
+          <Typography color="grey" numberOfLines={2} style={{ marginTop: 8 }}>
             {member.bio}
-          </Text>
+          </Typography>
           <View style={styles.tagRow}>
             {member.tags.slice(0, 3).map((tag) => (
               <View key={tag} style={styles.tag}>
-                <Text style={styles.tagText}>#{tag}</Text>
+                <Typography variant="semi-bold" color="blue" size={12}>
+                  #{tag}
+                </Typography>
               </View>
             ))}
           </View>
@@ -56,12 +67,18 @@ export const MemberCard: FC<MemberCardProps> = ({
       />
       <View style={styles.overlay} />
       <View style={styles.bottomPanel}>
-        <Text style={styles.nameLarge}>{member.fullName}</Text>
-        <Text style={styles.roleLarge}>{member.role}</Text>
+        <Typography variant="bold" color="white" size={22}>
+          {member.fullName}
+        </Typography>
+        <Typography color="white" style={{ opacity: 0.9, marginTop: 4 }}>
+          {member.role}
+        </Typography>
         <View style={styles.chipsRow}>
           {member.tags.slice(0, 3).map((tag) => (
             <View key={tag} style={styles.chip}>
-              <Text style={styles.chipText}>#{tag}</Text>
+              <Typography variant="semi-bold" color="blue" size={12}>
+                #{tag}
+              </Typography>
             </View>
           ))}
         </View>
@@ -91,8 +108,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#0A6CFF",
     padding: 16,
   },
-  nameLarge: { color: "#fff", fontSize: 22, fontWeight: "700" },
-  roleLarge: { color: "#E6ECFF", marginTop: 4 },
   chipsRow: { flexDirection: "row", gap: 8, marginTop: 12, flexWrap: "wrap" },
   chip: {
     backgroundColor: "#fff",
@@ -100,7 +115,6 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 16,
   },
-  chipText: { color: "#0A6CFF", fontWeight: "600" },
 
   compactCard: {
     flexDirection: "row",
@@ -116,9 +130,6 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
   },
   compactAvatar: { width: 56, height: 56, borderRadius: 28 },
-  name: { fontSize: 16, fontWeight: "600", color: "#111827" },
-  role: { color: "#6B7280", marginTop: 2 },
-  bio: { color: "#334155", marginTop: 8 },
   tagRow: { flexDirection: "row", gap: 8, marginTop: 8, flexWrap: "wrap" },
   tag: {
     backgroundColor: "#EEF2FF",
@@ -126,5 +137,4 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     borderRadius: 20,
   },
-  tagText: { color: "#1D4ED8", fontWeight: "600" },
 });

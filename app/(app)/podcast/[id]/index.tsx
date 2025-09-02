@@ -1,18 +1,21 @@
+import { Typography } from "@/components/ui";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 export default function PodcastScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Подкаст</Text>
-      <Text>ID: {id}</Text>
+      <Typography variant="semi-bold" size={24} style={styles.title}>
+        Подкаст
+      </Typography>
+      <Typography>ID: {id}</Typography>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: "center", justifyContent: "center" },
-  title: { fontSize: 24, fontWeight: "600", marginBottom: 8 },
+  title: { marginBottom: 8 },
 });

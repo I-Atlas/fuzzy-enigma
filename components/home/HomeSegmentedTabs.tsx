@@ -1,11 +1,6 @@
+import { Typography } from "@/components/ui";
 import React, { FC } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type TabKey = "hacks" | "office" | "team" | "remote";
 
@@ -70,12 +65,14 @@ export const HomeSegmentedTabs: FC<HomeSegmentedTabsProps> = ({
               }}
               onPress={() => onChange(t.key)}
             >
-              <Text
+              <Typography
                 numberOfLines={1}
-                style={[styles.label, isActive && styles.labelActive]}
+                variant="semi-bold"
+                color={isActive ? "white" : "grey"}
+                size={16}
               >
                 {t.title}
-              </Text>
+              </Typography>
             </TouchableOpacity>
           );
         })}
@@ -111,13 +108,5 @@ const styles = StyleSheet.create({
   },
   itemActive: {
     backgroundColor: "#007AFF",
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#333333",
-  },
-  labelActive: {
-    color: "#FFFFFF",
   },
 });
