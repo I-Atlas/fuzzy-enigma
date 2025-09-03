@@ -40,7 +40,7 @@ export const HOME_TABS_DATA: Record<
         avatars,
       },
       {
-        id: "2",
+        id: "1",
         type: "article",
         title: "Про процессы",
         description: "Как мы проводим дейлики и ретро.",
@@ -72,7 +72,7 @@ export const HOME_TABS_DATA: Record<
   team: {
     quickStart: [
       {
-        id: "1",
+        id: "2",
         type: "article",
         title: "Знакомство с командой",
         description: "Кто за что отвечает и как к нам попасть.",
@@ -82,7 +82,7 @@ export const HOME_TABS_DATA: Record<
         avatars,
       },
       {
-        id: "2",
+        id: "3",
         type: "article",
         title: "Календарь митапов",
         description: "Ближайшие события и внутренние лекции.",
@@ -105,7 +105,7 @@ export const HOME_TABS_DATA: Record<
   hacks: {
     quickStart: [
       {
-        id: "1",
+        id: "4",
         type: "article",
         title: "Горячие клавиши в офисе",
         description: "Сократи путь: принтеры, переговорки, кофе.",
@@ -115,7 +115,7 @@ export const HOME_TABS_DATA: Record<
         avatars,
       },
       {
-        id: "2",
+        id: "5",
         type: "article",
         title: "Автоматизации",
         description: "Как мы экономим 2 часа в день.",
@@ -143,7 +143,7 @@ export const HOME_TABS_DATA: Record<
   remote: {
     quickStart: [
       {
-        id: "1",
+        id: "6",
         type: "article",
         title: "Как не выпадать из контекста",
         description: "Инструменты и ритуалы удалёнки.",
@@ -153,7 +153,7 @@ export const HOME_TABS_DATA: Record<
         avatars,
       },
       {
-        id: "2",
+        id: "7",
         type: "article",
         title: "Асинхронные апдейты",
         description: "Правила коротких апдейтов и еженедельных демо.",

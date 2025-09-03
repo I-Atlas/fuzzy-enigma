@@ -13,6 +13,7 @@ module.exports = (() => {
     ...resolver,
     assetExts: resolver.assetExts.filter((ext) => ext !== "svg"),
     sourceExts: [...resolver.sourceExts, "svg"],
+    unstable_conditionNames: ["browser", "require", "react-native"],
   };
 
   return config;

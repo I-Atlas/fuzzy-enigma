@@ -1,3 +1,5 @@
+import { COLOR } from "@/constants";
+import { Ionicons } from "@expo/vector-icons";
 import { Stack } from "expo-router";
 import React from "react";
 
@@ -7,10 +9,10 @@ export default function AppAreaLayout() {
       screenOptions={{
         headerShadowVisible: false,
         headerTitle: "",
-        headerBackTitle: "",
+        headerBackButtonDisplayMode: "minimal",
         headerTintColor: "#333333",
-        headerStyle: { backgroundColor: "#F7F7F7" },
-        contentStyle: { backgroundColor: "#F7F7F7" },
+        headerStyle: { backgroundColor: COLOR.Background_Light },
+        contentStyle: { backgroundColor: COLOR.Background_Light },
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -18,9 +20,28 @@ export default function AppAreaLayout() {
       <Stack.Screen name="team/[memberId]" />
       <Stack.Screen
         name="article/[id]"
-        options={{ headerStyle: { backgroundColor: "#FF9B34" } }}
+        options={{
+          headerRight: () => (
+            <Ionicons name="bookmark-outline" size={24} color={COLOR.Grey} />
+          ),
+          headerStyle: { backgroundColor: COLOR.Background_Orange },
+        }}
+      />
+      <Stack.Screen
+        name="podcast/[id]/index"
+        options={{
+          headerStyle: { backgroundColor: COLOR.Background_Yellow },
+        }}
       />
       <Stack.Screen name="podcast/[id]/episode/[episodeId]" />
+      <Stack.Screen
+        name="modals/episode-description"
+        options={{
+          presentation: "modal",
+          headerShown: false,
+          contentStyle: { backgroundColor: COLOR.Background_Yellow },
+        }}
+      />
     </Stack>
   );
 }

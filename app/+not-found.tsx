@@ -19,7 +19,10 @@ export default function NotFoundScreen() {
       </View>
 
       <View style={styles.footer}>
-        <Button title="Вернуться назад" onPress={() => router.back()} />
+        <Button
+          title="Вернуться на главную"
+          onPress={() => router.replace("/")}
+        />
       </View>
     </SafeAreaView>
   );
