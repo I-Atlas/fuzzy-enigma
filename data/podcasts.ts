@@ -3,77 +3,167 @@ import { Podcast } from "@/types";
 export const PODCASTS: Podcast[] = [
   {
     id: 1,
-    title: "Кто эти люди?",
-    description:
-      "Интервью-знакомство с коллегами: истории о работе, хобби и офисных приключениях.",
-    coverUrl:
-      "https://images.unsplash.com/photo-1581092921461-eab62e97a3f5?q=80&w=1974&auto=format&fit=crop",
+    title: "QA подкаст",
+    description: "Подкаст о мире тестирования: от ручного до автоматизации.",
+    coverUrl: "https://example.com/qa-podcast-cover.jpg",
     episodes: [
       {
         id: 1,
-        title: "Андрей, тестировщик: Как баги научили меня терпению",
-        subtitle:
-          "Андрей рассказывает о себе, загадках в багах и хобби секрет терпения...",
+        title: "Web или Mobile в QA, что сложнее?",
         description:
-          "В выпуске говорим о пути из инженера-механика в охотника за багами, самых странных фейлах, и почему сборка моделей поездов помогает в работе.",
-        coverUrl:
-          "https://images.unsplash.com/photo-1601933470928-c7b1b54b06f9?q=80&w=1887&auto=format&fit=crop",
-        durationSec: 60 * 12,
-        sections: [
-          { time: "0:00", title: "приветствие" },
-          { time: "3:01", title: "история, как инженер стал тестировщиком" },
-          { time: "6:24", title: "странные баги и случайный запуск аудио" },
-          { time: "9:50", title: "хобби vs работа" },
-          { time: "13:30", title: "советы новичкам" },
-        ],
+          "Обсуждаем различия и сложности тестирования веба и мобильных приложений.",
+        durationSec: 58,
         hosts: [
           {
-            id: "andrey",
-            fullName: "Софонов Андрей",
-            role: "Тестировщик",
-            avatarUrl: "https://i.pravatar.cc/100?img=32",
-            email: "testsof_a@gmail.com",
-            vkUrl: "https://vk.com",
+            id: "anton-kuzmischev",
+            fullName: "Антон Кузьмищев",
+            role: "Lead AQA",
+            about: "Опытный инженер в области автоматизации тестирования.",
+            tags: ["qa", "automation", "testing"],
+            socials: [],
           },
           {
-            id: "anna",
-            fullName: "Анна Захарова",
-            role: "UX/UI дизайнер",
-            avatarUrl: "https://i.pravatar.cc/100?img=23",
-            email: "anadesign_z@gmail.com",
-            vkUrl: "https://vk.com",
+            id: "olga-mikheeva",
+            fullName: "Ольга Михеева",
+            role: "Lead Manual QA",
+            about: "Специалист по ручному тестированию с большим опытом.",
+            tags: ["qa", "manual", "testing"],
+            socials: [],
           },
         ],
+        audioAsset: require("../assets/audio/podcasts/qa/web_vs_mobile_qa.mp3"),
       },
       {
         id: 2,
-        title:
-          "Аня, дизайнер: От акварели к Figma и как котик стал арт-директором",
-        subtitle:
-          "Аня расскажет про свой путь и как не бояться клиентских правок...",
-        description: "",
-        coverUrl:
-          "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=2070&auto=format&fit=crop",
-        durationSec: 60 * 12,
+        title: "Автоматизация тестирования",
+        description: "Разбираемся в трендах и подходах к автоматизации.",
+        durationSec: 57,
+        hosts: [
+          {
+            id: "anton-kuzmischev",
+            fullName: "Антон Кузьмищев",
+            role: "Lead AQA",
+            about: "Опытный инженер в области автоматизации тестирования.",
+            tags: ["qa", "automation", "testing"],
+            socials: [],
+          },
+          {
+            id: "olga-mikheeva",
+            fullName: "Ольга Михеева",
+            role: "Lead Manual QA",
+            about: "Специалист по ручному тестированию с большим опытом.",
+            tags: ["qa", "manual", "testing"],
+            socials: [],
+          },
+        ],
+        audioAsset: require("../assets/audio/podcasts/qa/automation_qa.mp3"),
       },
       {
         id: 3,
-        title: "Максим, тимлид: От стажёра до руководителя — путь через ошибки",
-        subtitle: "Максим расскажет как он управляет командой...",
-        description: "",
-        coverUrl:
-          "https://images.unsplash.com/photo-1541123603104-512919d6a96c?q=80&w=1974&auto=format&fit=crop",
-        durationSec: 60 * 15,
+        title: "Ферма устройств для тестирования",
+        description: "Как использовать фермы устройств для эффективного QA.",
+        durationSec: 49,
+        hosts: [
+          {
+            id: "anton-kuzmischev",
+            fullName: "Антон Кузьмищев",
+            role: "Lead AQA",
+            about: "Опытный инженер в области автоматизации тестирования.",
+            tags: ["qa", "automation", "testing"],
+            socials: [],
+          },
+          {
+            id: "olga-mikheeva",
+            fullName: "Ольга Михеева",
+            role: "Lead Manual QA",
+            about: "Специалист по ручному тестированию с большим опытом.",
+            tags: ["qa", "manual", "testing"],
+            socials: [],
+          },
+        ],
+        audioAsset: require("../assets/audio/podcasts/qa/test_farm_qa.mp3"),
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "AI подкаст",
+    description:
+      "Разговоры об искусственном интеллекте, его развитии и применении.",
+    coverUrl: "https://example.com/ai-podcast-cover.jpg",
+    episodes: [
+      {
+        id: 1,
+        title: "Тест тьюринга сложный?",
+        description: "Пробуем разобраться, насколько сложен тест Тьюринга.",
+        durationSec: 15,
+        hosts: [
+          {
+            id: "alexandr-kraschenco",
+            fullName: "Александр Кращенко",
+            role: "Head of AI Department",
+            about:
+              "Эксперт в области искусственного интеллекта и машинного обучения.",
+            tags: ["ai", "ml", "research"],
+            socials: [],
+          },
+        ],
+        audioAsset: require("../assets/audio/podcasts/ai/turing_test_ai.mp3"),
+      },
+      {
+        id: 2,
+        title: "Чтобы обучить нейросеть, ее надо отправить в школу",
+        description: "Шутим и серьезно обсуждаем, как обучаются нейросети.",
+        durationSec: 37,
+        hosts: [
+          {
+            id: "alexandr-kraschenco",
+            fullName: "Александр Кращенко",
+            role: "Head of AI Department",
+            about:
+              "Эксперт в области искусственного интеллекта и машинного обучения.",
+            tags: ["ai", "ml", "research"],
+            socials: [],
+          },
+        ],
+        audioAsset: require("../assets/audio/podcasts/ai/school_ai.mp3"),
+      },
+      {
+        id: 3,
+        title: "Кто подсказывает Алисе, какая музыка мне нравится?",
+        description:
+          "Обсуждаем рекомендательные системы и их роль в повседневной жизни.",
+        durationSec: 23,
+        hosts: [
+          {
+            id: "alexandr-kraschenco",
+            fullName: "Александр Кращенко",
+            role: "Head of AI Department",
+            about:
+              "Эксперт в области искусственного интеллекта и машинного обучения.",
+            tags: ["ai", "ml", "recommendation"],
+            socials: [],
+          },
+        ],
+        audioAsset: require("../assets/audio/podcasts/ai/alice_ai.mp3"),
       },
       {
         id: 4,
-        title: "Сергей, разработчик: Код, музыка и философия",
-        subtitle:
-          "Backend-разработчик и музыкант. Как код похож на импровизацию...",
-        description: "",
-        coverUrl:
-          "https://images.unsplash.com/photo-1496128858413-b36217c2ce36?q=80&w=1974&auto=format&fit=crop",
-        durationSec: 60 * 10,
+        title: "Не бойтесь, что получится Скайнет!",
+        description: "Развенчиваем мифы об ИИ и возможном восстании машин.",
+        durationSec: 54,
+        hosts: [
+          {
+            id: "alexandr-kraschenco",
+            fullName: "Александр Кращенко",
+            role: "Head of AI Department",
+            about:
+              "Эксперт в области искусственного интеллекта и машинного обучения.",
+            tags: ["ai", "ml", "ethics"],
+            socials: [],
+          },
+        ],
+        audioAsset: require("../assets/audio/podcasts/ai/skynet_ai.mp3"),
       },
     ],
   },

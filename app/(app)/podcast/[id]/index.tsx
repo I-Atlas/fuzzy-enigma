@@ -4,6 +4,7 @@ import { COLOR } from "@/constants/color";
 import { PODCASTS } from "@/data/podcasts";
 import { Ionicons } from "@expo/vector-icons";
 import {
+  Link,
   Redirect,
   useLocalSearchParams,
   useNavigation,
@@ -133,11 +134,21 @@ export default function PodcastScreen() {
                     </Typography>
                   </View>
                 </View>
-                <Ionicons
-                  name="ellipsis-vertical"
-                  size={18}
-                  color={COLOR.Grey}
-                />
+                <Link
+                  href={{
+                    pathname: "/(app)/modals/episode-description",
+                    params: { id, episodeId: ep.id },
+                  }}
+                  asChild
+                >
+                  <Pressable>
+                    <Ionicons
+                      name="ellipsis-vertical"
+                      size={18}
+                      color={COLOR.Grey}
+                    />
+                  </Pressable>
+                </Link>
               </Pressable>
             ))}
           </View>

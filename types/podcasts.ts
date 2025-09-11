@@ -1,17 +1,9 @@
 import { ImageSourcePropType } from "react-native";
+import { TeamMember } from "./team";
 
 export type PodcastEpisodeSection = {
   time: string;
   title: string;
-};
-
-export type PodcastHost = {
-  id: string | number;
-  fullName: string;
-  role: string;
-  avatarUrl: string;
-  email?: string;
-  vkUrl?: string;
 };
 
 export type PodcastEpisode = {
@@ -23,8 +15,9 @@ export type PodcastEpisode = {
   cover?: ImageSourcePropType;
   durationSec: number;
   sections?: PodcastEpisodeSection[];
-  hosts?: PodcastHost[];
+  hosts?: TeamMember[];
   audioUrl?: string;
+  audioAsset?: number;
 };
 
 export type Podcast = {

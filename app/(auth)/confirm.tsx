@@ -1,5 +1,6 @@
 import Logo from "@/assets/svg/logo.svg";
 import { Button, Input, Typography } from "@/components/ui";
+import { CODE } from "@/constants/auth";
 import { useAuthStore } from "@/stores/auth";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -37,13 +38,12 @@ export default function ConfirmScreen() {
     const next = value.replace(/\D/g, "").slice(0, 4);
     setCode(next);
     if (next.length < 4) {
-      // Clear error while user is still typing
-      if (error) setError(null);
+      if (error) {
+        setError(null);
+      }
       return;
     }
-    const expected = String(7777 - new Date().getDate() * 10 - 1)
-      .padStart(4, "0")
-      .slice(0, 4);
+    const expected = CODE.padStart(4, "0").slice(0, 4);
     if (next !== expected) {
       setError("Некорректное значение");
       return;

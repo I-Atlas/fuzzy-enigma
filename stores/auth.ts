@@ -1,3 +1,4 @@
+import { CODE } from "@/constants/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
@@ -26,8 +27,7 @@ export const useAuthStore = create<AuthState>()(
       setEmail: (value: string) => set({ email: value }),
       setCode: (value: string) => set({ code: value }),
       generateCode: () => {
-        const calc = 7777 - new Date().getDate() * 10 - 1;
-        const code = String(calc).padStart(4, "0").slice(0, 4);
+        const code = CODE.padStart(4, "0").slice(0, 4);
         const ttlMs = 60 * 1000;
         set({ code: code, codeExpiresAt: Date.now() + ttlMs });
         return code;

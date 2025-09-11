@@ -31,9 +31,9 @@ export const HOME_TABS_DATA: Record<
       {
         id: "1",
         type: "podcast",
-        title: "Кто эти люди?",
+        title: "QA подкаст",
         description:
-          "Сотрудники без галстуков: честные ответы на странные вопросы.",
+          "Подкаст о мире тестирования: от ручного до автоматизации.",
         cta: "Познакомиться",
         gradientColors: ["#FFEDBC", "#EDC0A3"],
         iconName: "headset-outline",
@@ -142,6 +142,17 @@ export const HOME_TABS_DATA: Record<
   },
   remote: {
     quickStart: [
+      {
+        id: "2",
+        type: "podcast",
+        title: "AI подкаст",
+        description:
+          "Разговоры об искусственном интеллекте, его развитии и применении.",
+        cta: "Познакомиться",
+        gradientColors: ["#FFEDBC", "#EDC0A3"],
+        iconName: "headset-outline",
+        avatars,
+      },
       {
         id: "6",
         type: "article",
