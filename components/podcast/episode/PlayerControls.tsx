@@ -19,20 +19,23 @@ export const PlayerControls: FC<PlayerControlsProps> = ({
   return (
     <View style={styles.playerRow}>
       <Pressable style={styles.playerButton} onPress={onSeekBackward}>
-        <Ionicons name="play-back" size={20} color={COLOR.Blue} />
+        <View style={styles.playerButtonContent}>
+          <Ionicons name="play-back" size={20} color={COLOR.Blue} />
+        </View>
       </Pressable>
-      <Pressable
-        style={[styles.playerButton, styles.playerButtonMain]}
-        onPress={onPlayPause}
-      >
-        <Ionicons
-          name={isPlaying ? "pause" : "play"}
-          size={24}
-          color={COLOR.White}
-        />
+      <Pressable style={styles.playerButtonMain} onPress={onPlayPause}>
+        <View style={styles.playerButtonMainContent}>
+          <Ionicons
+            name={isPlaying ? "pause" : "play"}
+            size={24}
+            color={COLOR.White}
+          />
+        </View>
       </Pressable>
       <Pressable style={styles.playerButton} onPress={onSeekForward}>
-        <Ionicons name="play-forward" size={20} color={COLOR.Blue} />
+        <View style={styles.playerButtonContent}>
+          <Ionicons name="play-forward" size={20} color={COLOR.Blue} />
+        </View>
       </Pressable>
     </View>
   );
@@ -44,23 +47,39 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     gap: 16,
+    marginTop: -24,
+    marginBottom: -24,
   },
   playerButton: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: COLOR.White,
+    borderRadius: 32,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
+    backgroundColor: COLOR.Background_Light,
+    borderColor: COLOR.Background_Light,
+    borderWidth: 8,
+  },
+  playerButtonContent: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 60,
+    height: 60,
+    borderRadius: 24,
+    backgroundColor: COLOR.White,
   },
   playerButtonMain: {
-    width: 72,
-    height: 72,
-    borderRadius: 36,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 32,
+    backgroundColor: COLOR.Background_Light,
+    borderColor: COLOR.Background_Light,
+    borderWidth: 12,
+  },
+  playerButtonMainContent: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 60,
+    height: 60,
+    borderRadius: 24,
     backgroundColor: COLOR.Blue,
   },
 });

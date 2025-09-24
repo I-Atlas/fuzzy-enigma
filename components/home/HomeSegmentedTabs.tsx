@@ -1,5 +1,6 @@
 import { Typography } from "@/components/ui";
-import React, { FC } from "react";
+import * as Haptics from "expo-haptics";
+import { FC, useEffect, useRef, useState } from "react";
 import { ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 
 type TabKey = "hacks" | "office" | "team" | "remote";
@@ -20,13 +21,13 @@ export const HomeSegmentedTabs: FC<HomeSegmentedTabsProps> = ({
   value,
   onChange,
 }) => {
-  const scrollRef = React.useRef<ScrollView>(null);
-  const [containerWidth, setContainerWidth] = React.useState(0);
-  const [layouts, setLayouts] = React.useState<
+  const scrollRef = useRef<ScrollView>(null);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const [layouts, setLayouts] = useState<
     Record<string, { x: number; width: number }>
   >({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     const l = layouts[value];
     if (l && containerWidth) {
       const targetX = Math.max(0, l.x + l.width / 2 - containerWidth / 2);
@@ -63,7 +64,10 @@ export const HomeSegmentedTabs: FC<HomeSegmentedTabsProps> = ({
                   [t.key]: { x: l.x, width: l.width },
                 }));
               }}
-              onPress={() => onChange(t.key)}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                onChange(t.key);
+              }}
             >
               <Typography
                 numberOfLines={1}

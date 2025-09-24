@@ -1,17 +1,11 @@
-import {
-  AudioWaveform,
-  CoverArt,
-  EpisodeInfo,
-  NowPlayingHeader,
-  PlayerControls,
-} from "@/components/podcast";
+import { AudioWaveform, CoverArt, PlayerControls } from "@/components/podcast";
 import { Typography } from "@/components/ui/Typography";
 import { COLOR } from "@/constants/color";
 import { PODCASTS } from "@/data/podcasts";
 import { useAudioPlayer, useAudioPlayerStatus } from "expo-audio";
-import { Redirect, useLocalSearchParams } from "expo-router";
-import React, { useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import { Redirect, useLocalSearchParams, useNavigation } from "expo-router";
+import React, { useEffect, useMemo } from "react";
+import { Image, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function PodcastEpisodeScreen() {
@@ -19,6 +13,30 @@ export default function PodcastEpisodeScreen() {
     id: string;
     episodeId: string;
   }>();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerTitle: () => (
+        <View
+          style={{
+            paddingHorizontal: 16,
+            paddingTop: 12,
+            gap: 2,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Typography color="#7C7C7C" size={10} variant="semi-bold">
+            Сейчас играет
+          </Typography>
+          <Typography color="grey" size={16} variant="semi-bold">
+            {episode?.title}
+          </Typography>
+        </View>
+      ),
+    });
+  }, [navigation]);
 
   const podcast = PODCASTS.find((p) => p.id === Number(id));
   const episode = podcast?.episodes.find((e) => e.id === Number(episodeId));
@@ -61,8 +79,6 @@ export default function PodcastEpisodeScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={["bottom"]}>
-      <NowPlayingHeader title={podcast.title} />
-
       <CoverArt uri={episode.coverUrl || podcast.coverUrl} />
 
       <PlayerControls
@@ -73,28 +89,41 @@ export default function PodcastEpisodeScreen() {
       />
 
       <View style={styles.panel}>
+        <Typography variant="semi-bold" color="grey" size={16}>
+          {episode.title}
+        </Typography>
         <AudioWaveform
           durationSec={durationSec}
           currentSec={currentSec}
           onSeek={(sec: number) => player?.seekTo(sec)}
         />
         <View style={styles.timelineRow}>
-          <Typography color="grey" size={13} style={{ opacity: 0.7 }}>
+          <Typography color={COLOR.Stroke_LightBlue} size={12}>
             {Math.floor(currentSec / 60)}:
             {String(currentSec % 60).padStart(2, "0")}
           </Typography>
-          <Typography color="grey" size={13} style={{ opacity: 0.7 }}>
+          <Typography color={COLOR.Stroke_LightBlue} size={12}>
             {Math.floor(durationSec / 60)}:
             {String(durationSec % 60).padStart(2, "0")}
           </Typography>
         </View>
       </View>
-
-      <EpisodeInfo
-        title={episode.title}
-        subtitle={episode.subtitle}
-        hosts={episode.hosts}
-      />
+      {!!episode.hosts?.length && (
+        <View style={styles.hostsRow}>
+          {episode.hosts.slice(0, 3).map((h) => (
+            <Image
+              key={h.id}
+              source={{ uri: h.avatarUrl }}
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: 14,
+                marginRight: -8,
+              }}
+            />
+          ))}
+        </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -102,14 +131,21 @@ export default function PodcastEpisodeScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLOR.Background_Light },
   panel: {
-    margin: 16,
+    zIndex: -1,
     backgroundColor: COLOR.White,
+    marginHorizontal: 16,
     borderRadius: 20,
-    padding: 16,
+    paddingHorizontal: 16,
+    paddingBottom: 16,
+    paddingTop: 32,
     shadowColor: "#000",
     shadowOpacity: 0.06,
     shadowRadius: 12,
-    elevation: 2,
+  },
+  hostsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 8,
   },
   timelineRow: {
     flexDirection: "row",

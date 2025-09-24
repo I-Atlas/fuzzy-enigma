@@ -7,13 +7,13 @@ interface CoverArtProps {
 
 export const CoverArt: FC<CoverArtProps> = ({ uri }) => {
   return (
-    <View style={{ padding: 16, alignItems: "center" }}>
+    <View style={{ marginHorizontal: 16, marginTop: 16, alignItems: "center" }}>
       <Image
         source={{ uri }}
         style={{
-          width: 300,
-          height: 300,
-          borderRadius: 16,
+          width: "100%",
+          borderRadius: 32,
+          aspectRatio: 0.85,
           backgroundColor: "#EEE",
         }}
       />

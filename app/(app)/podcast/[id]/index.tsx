@@ -56,7 +56,8 @@ export default function PodcastScreen() {
       <Animated.ScrollView
         bounces={false}
         onScroll={scrollHandler}
-        style={{ flex: 1, backgroundColor: COLOR.Background_Yellow }}
+        style={{ backgroundColor: COLOR.Background_Yellow }}
+        contentContainerStyle={{ flex: 1 }}
         stickyHeaderIndices={[1]}
         showsVerticalScrollIndicator={false}
       >
@@ -78,7 +79,7 @@ export default function PodcastScreen() {
             borderTopLeftRadius: 30,
             borderTopRightRadius: 30,
             paddingTop: 24,
-            height: "100%",
+            flex: 1,
           }}
         >
           <View style={{ gap: 16 }}>
@@ -96,9 +97,9 @@ export default function PodcastScreen() {
                 <Image
                   source={{ uri: ep.coverUrl || podcast.coverUrl }}
                   style={{
-                    width: 88,
-                    height: 88,
-                    borderRadius: 12,
+                    width: 110,
+                    height: 110,
+                    borderRadius: 16,
                     backgroundColor: "#EEE",
                   }}
                 />
